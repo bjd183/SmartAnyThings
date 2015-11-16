@@ -19,8 +19,8 @@ metadata {
 	// tile definitions
 	tiles {
         standardTile("motionPin07", "device.motionPin07", width: 1, height: 1, canChangeIcon: true, canChangeBackground: true) {
-			state("active", label:'${name}', icon:"st.motion.motion.active", backgroundColor:"#ffa81e")
-			state("inactive", label:'${name}', icon:"st.motion.motion.inactive", backgroundColor:"#79b821")
+			state("active", label:'no motion', icon:"st.motion.motion.active", backgroundColor:"#ffa81e")
+			state("inactive", label:'motion', icon:"st.motion.motion.inactive", backgroundColor:"#79b821")
  		}
         standardTile("contactPin08", "device.contactPin08", width: 1, height: 1, canChangeIcon: true, canChangeBackground: true) {
 			state("open", label:'${name}', icon:"st.contact.contact.open", backgroundColor:"#ffa81e")
