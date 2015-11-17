@@ -98,9 +98,6 @@
 //motion pins
 //#define PIN_MOTION                   A5
 
-//******************************************************************************************
-//Arduino Setup() routine
-//******************************************************************************************
 void setup()
 {
   //******************************************************************************************
@@ -114,7 +111,7 @@ void setup()
   //******************************************************************************************
  
   //when the input wire is connected to ground (interrupt==TRUE), the input pullup is bypassed and reads LOW
-  static st::IS_Motion2 sensor1(F("motionPin07"), 7, LOW, true, 250);
+  static st::IS_Motion2 sensor1(F("motionPin07"), 7, HIGH, true, 250);
   static st::IS_Contact sensor2(F("contactPin08"), 8, LOW, true, 250);
   static st::IS_Contact sensor3(F("contactPin09"), 9, LOW, true, 250);
   static st::IS_Contact sensor4(F("contactPin10"), 10, LOW, true, 250);
@@ -126,9 +123,9 @@ void setup()
   //  -Note: Set these to "false" if using Hardware Serial on pins 0 & 1
   //         to prevent communication conflicts with the ST Shield communications
   //*****************************************************************************
-  st::Everything::debug=true;
-  st::Device::debug=true;
-  st::InterruptSensor::debug=true;
+  st::Everything::debug=false;
+  st::Device::debug=false;
+  st::InterruptSensor::debug=false;
   
   st::Everything::init();
   
