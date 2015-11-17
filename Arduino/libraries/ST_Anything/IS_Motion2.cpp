@@ -57,19 +57,19 @@ namespace st
 	//called periodically by Everything class to ensure ST Cloud is kept consistent with the state of the motion sensor
 	void IS_Motion2::refresh()
 	{
-		Everything::sendSmartString(getName() + (getStatus() ? F(" closed") : F(" open")));
+		Everything::sendSmartString(getName() + (getStatus() ? F(" active") : F(" inactive")));
 	}
 
 	void IS_Motion2::runInterrupt()
 	{
 		//add the "closed" event to the buffer to be queued for transfer to the ST Shield
-		Everything::sendSmartString(getName() + F(" closed"));
+		Everything::sendSmartString(getName() + F(" active"));
 	}
 	
 	void IS_Motion2::runInterruptEnded()
 	{
 		//add the "open" event to the buffer to be queued for transfer to the ST Shield
-		Everything::sendSmartString(getName() + F(" open"));
+		Everything::sendSmartString(getName() + F(" inactive"));
 		//TODO wait for 1 minute (make it configurable)
 	}
 
