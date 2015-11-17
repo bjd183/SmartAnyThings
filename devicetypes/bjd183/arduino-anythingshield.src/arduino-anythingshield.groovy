@@ -1,7 +1,7 @@
 metadata {
 	definition (name: "Arduino AnyThingShield", namespace: "bjd183", author: "Bryce Durham") {
 		capability "Contact Sensor"
-//		capability "Sensor"
+		capability "Sensor"
 
 		attribute "motionPin07", "string"
 		attribute "contactPin08", "string"
