@@ -2,8 +2,8 @@ metadata {
 	definition (name: "Virtual Contact Sensor", namespace: "bjd183", author: "Bryce Durham") {
 		capability "Contact Sensor"
         
-		command "openme"
-		command "closeme"
+		command "setOpen"
+		command "setClosed"
 	}
 
 	simulator {
@@ -28,12 +28,12 @@ def parse(String description) {
 
 }
 
-def openme() {
+def setOpen() {
     log.debug "Virtual Contact Open"
     sendEvent(name: "contact", value: "open", isStateChange: true)
 }
 
-def closeme() {
+def setClosed() {
     log.debug "Virtual Contact Closed"
     sendEvent(name: "contact", value: "closed", isStateChange: true)
 }
