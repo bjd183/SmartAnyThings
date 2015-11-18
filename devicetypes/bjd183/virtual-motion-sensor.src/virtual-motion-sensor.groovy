@@ -12,8 +12,8 @@ metadata {
 
 	tiles {
 		standardTile("motion", "device.motion", width: 2, height: 2) {
-			state("active", label:'motion', icon:"st.contact.contact.open", backgroundColor:"#ffa81e")
-			state("inactive", label:'no motion', icon:"st.contact.contact.closed", backgroundColor:"#79b821")
+			state("active", label:'motion', icon:"st.motion.motion.active", backgroundColor:"#ffa81e")
+			state("inactive", label:'no motion', icon:"st.motion.motion.inactive", backgroundColor:"#79b821")
 		}
         
 	main(["motion"])
