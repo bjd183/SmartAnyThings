@@ -1,6 +1,7 @@
 metadata {
 	definition (name: "Virtual Contact Sensor", namespace: "bjd183", author: "Bryce Durham") {
 		capability "Contact Sensor"
+        capability "Sensor"
         
 		command "setOpen"
 		command "setClosed"
@@ -10,15 +11,17 @@ metadata {
 		// TODO: define status and reply messages here
 	}
 
-	tiles {
-		standardTile("contact", "device.contact", width: 2, height: 2) {
-			state("open", label:'${name}', icon:"st.contact.contact.open", backgroundColor:"#ffa81e")
-			state("closed", label:'${name}', icon:"st.contact.contact.closed", backgroundColor:"#79b821")
+	tiles(scale: 2) {
+		multiAttributeTile(name:"contact", type:"generic", width:6, height:4) {
+			tileAttribute("device.contact", key: "PRIMARY_CONTROL") {
+				attributeState "open", label: '${name}', icon:"st.contact.contact.open", backgroundColor:"#ffa81e"
+				attributeState "closed", label:'${name}', icon:"st.contact.contact.closed", backgroundColor:"#79b821"
+			}
 		}
-        
-	main(["contact"])
-	details(["contact"])
-	}
+
+		main "contact"
+		details "contact"
+    }
 }
 
 // parse events into attributes

@@ -58,7 +58,7 @@ def parse(String description) {
 
     name = value != "ping" ? name : null
 	
-    def result = createEvent(name: name, value: value, isStateChange: true)
+    def result = createEvent(name: name, value: value, isStateChange: true) //true?
 
     log.debug result
 
