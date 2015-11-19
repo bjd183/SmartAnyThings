@@ -40,8 +40,8 @@ def contactHandler(evt)
 	log.debug "arduinoevent($evt.name; $evt.value; $evt.deviceId)"
 	
     if (evt.value == "open") {
-    	motion.setOpen()
+    	contact.setOpen()
     } else if (evt.value == "closed") {
-    	motion.setClosed()
+    	contact.setClosed()
     }
 }
