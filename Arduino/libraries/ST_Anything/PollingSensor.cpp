@@ -95,6 +95,8 @@ namespace st
 		}
 	}
 	
+	void PollingSensor::refresh(){} //empty
+	
 	void PollingSensor::getData()
 	{
 		if(debug)

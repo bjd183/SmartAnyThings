@@ -49,6 +49,8 @@ namespace st
 
 			//update function 
 			virtual void update();
+			
+			virtual void refresh()=0;
 
 			//handles what to do when interrupt is triggered - all derived classes should implement this virtual function
 			virtual void runInterrupt();

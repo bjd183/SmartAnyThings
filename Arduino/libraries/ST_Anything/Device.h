@@ -42,7 +42,10 @@ namespace st
 			virtual void beSmart(const String &str)=0; 
 			
 			//called periodically by Everything class to ensure ST Cloud is kept consistent with the state of each Device subclass object
-			virtual void refresh();
+			virtual void refresh()=0;
+			
+			//called each iteration, checks for state change
+			virtual void update()=0;
 
 			//gets
 			const String getName() const;

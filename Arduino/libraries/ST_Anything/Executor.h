@@ -34,8 +34,12 @@ namespace st
 			//destructor
 			virtual ~Executor();
 		
+			virtual void beSmart(const String &str)=0;
+			
 			//initialization routine
-			virtual void init();	
+			virtual void init()=0;
+			virtual void update();
+			virtual void refresh()=0;
 		
 			//debug flag to determine if debug print statements are executed (set value in your sketch)
 			static bool debug;

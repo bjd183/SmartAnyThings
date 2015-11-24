@@ -42,10 +42,7 @@ st
 		
 	}
 
-	void Executor::init()
-	{
-		
-	}
+	void Executor::update(){}//default to empty
 	
 	//debug flag to determine if debug print statements are executed (set value in your sketch)
 	bool Executor::debug=false; 

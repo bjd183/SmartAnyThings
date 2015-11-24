@@ -6,7 +6,7 @@
 
 namespace st
 {
-	class InterruptSensor2: public Sensor
+	class InterruptSensor2: public Sensor //todo : public InterruptSensor
 	{
 		private:
 			byte m_nInterruptPin;	//pin that will be monitored for change of state
@@ -14,17 +14,17 @@ namespace st
 			bool m_bStatus;			//true == interrupted
 			bool m_bPullup;			//true == Internal Pullup resistor required, set in constructor call in your sketch
 			bool m_bInitRequired;	//
-			long m_nRequiredCounts;	//Number of required counts (checks of the pin) before believing the pin is high/low
-			long m_nCurrentUpCount;
-			long m_nCurrentDownCount;
-			unsigned long m_interruptMillis; //time of most recent interrupt state
-			long m_inactiveDelay;  //delay before sending inactive
+			long m_lRequiredCounts;	//Number of required counts (checks of the pin) before believing the pin is high/low
+			long m_lCurrentUpCount;
+			long m_lCurrentDownCount;
+			unsigned long m_lInterruptMillis; //time of most recent interrupt state
+			unsigned long m_lInactiveDelay;  //delay in seconds before sending inactive
 
 			void checkIfTriggered(); 
 			
 		public:
 			//constructor
-			InterruptSensor2(const __FlashStringHelper *name, byte pin, bool iState, bool internalPullup=false, long numReqCounts=0, long inactiveDelay); //(defaults to NOT using internal pullup resistors, and required counts = 0)
+			InterruptSensor2(const __FlashStringHelper *name, byte pin, bool iState, bool internalPullup=false, long numReqCounts=0, unsigned long inactiveDelay=0); //(defaults to NOT using internal pullup resistors, and required counts = 0)
 			
 			//destructor
 			virtual ~InterruptSensor2();
@@ -34,6 +34,8 @@ namespace st
 
 			//update function 
 			virtual void update();
+			
+			virtual void refresh()=0;
 
 			//handles what to do when interrupt is triggered - all derived classes should implement this virtual function
 			virtual void runInterrupt();

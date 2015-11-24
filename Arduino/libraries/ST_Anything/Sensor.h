@@ -40,6 +40,7 @@ namespace st
 			//all derived classes must implement these pure virtual functions
 			virtual void init()=0;
 			virtual void update()=0;
+			virtual void refresh()=0;
 	
 	};
 

@@ -45,11 +45,6 @@ namespace st
 		}
 	}
 
-	void Device::refresh()
-	{
-		
-	}
-	
 	const String Device::getName() const
 	{
 		char tmp[Constants::MAX_NAME_LENGTH];

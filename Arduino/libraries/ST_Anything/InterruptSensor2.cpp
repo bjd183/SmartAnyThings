@@ -13,13 +13,13 @@ namespace st
 			bool pinValue = digitalRead(m_nInterruptPin);
 			if (pinValue == m_bInterruptState) //last time in interrupt state
 			{
-				m_interruptMillis = millis();
+				m_lInterruptMillis = millis();
 			}
 			if (pinValue == m_bInterruptState && !m_bStatus) //new interrupt
 			{
-				m_nCurrentDownCount = m_nRequiredCounts;
-				m_nCurrentUpCount++;
-				if (m_nCurrentUpCount >= m_nRequiredCounts)
+				m_lCurrentDownCount = m_lRequiredCounts;
+				m_lCurrentUpCount++;
+				if (m_lCurrentUpCount >= m_lRequiredCounts)
 				{
 					m_bStatus = true;
 					m_bInitRequired = false;
@@ -28,9 +28,9 @@ namespace st
 			}
 			else if ((pinValue != m_bInterruptState && m_bStatus) || m_bInitRequired) //interrupt has ended OR Init called us
 			{
-				m_nCurrentUpCount = 0;
-				m_nCurrentDownCount--;
-				if (m_nCurrentDownCount <= 0 && millis() - m_interruptMillis >= m_inactiveDelay)
+				m_lCurrentUpCount = 0;
+				m_lCurrentDownCount--;
+				if (m_lCurrentDownCount <= 0 && millis() - m_lInterruptMillis >= m_lInactiveDelay * 1000)
 				{
 					m_bStatus = false;
 					m_bInitRequired = false;
@@ -41,16 +41,16 @@ namespace st
 
 //public
 	//constructor
-	InterruptSensor2::InterruptSensor2(const __FlashStringHelper *name, byte pin, bool iState, bool pullup, long numReqCounts, long inactiveDelay) :
+	InterruptSensor2::InterruptSensor2(const __FlashStringHelper *name, byte pin, bool iState, bool pullup, long numReqCounts, unsigned long inactiveDelay) :
 		Sensor(name),
 		m_bInterruptState(iState),
 		m_bStatus(false),
 		m_bPullup(pullup),
 		m_bInitRequired(true),
-		m_nRequiredCounts(numReqCounts),
-		m_nCurrentUpCount(0),
-		m_nCurrentDownCount(numReqCounts),
-		m_inactiveDelay(inactiveDelay)
+		m_lRequiredCounts(numReqCounts),
+		m_lCurrentUpCount(0),
+		m_lCurrentDownCount(numReqCounts),
+		m_lInactiveDelay(inactiveDelay)
 		{
 			setInterruptPin(pin);
 		}

@@ -51,6 +51,8 @@ namespace st
 			//update function 
 			virtual void update();
 			
+			virtual void refresh();
+			
 			//function to get data from sensor and queue results for transfer to ST Cloud 
 			virtual void getData();
 			
