@@ -30,7 +30,7 @@ namespace st
 			{
 				m_lCurrentUpCount = 0;
 				m_lCurrentDownCount--;
-				if (m_lCurrentDownCount <= 0 && millis() - m_lInterruptMillis >= m_lInactiveDelay * 1000)
+				if (m_bInitRequired || m_lCurrentDownCount <= 0 && millis() - m_lInterruptMillis >= m_lInactiveDelay * 1000)
 				{
 					m_bStatus = false;
 					m_bInitRequired = false;
