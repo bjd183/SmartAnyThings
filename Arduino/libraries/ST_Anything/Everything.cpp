@@ -74,11 +74,16 @@ namespace st
 		#endif
 	}
 
-	void Everything::updateSensors()
+	void Everything::updateDevices()
 	{
 		for(unsigned int index=0; index<m_nSensorCount; ++index)
 		{
 			m_Sensors[index]->update();
+			sendStrings();
+		}
+		for(unsigned int i=0;i<m_nExecutorCount; ++i) 
+		{
+			m_Executors[i]->update();
 			sendStrings();
 		}
 	}
@@ -214,7 +219,7 @@ namespace st
 	
 	void Everything::run()
 	{
-		updateSensors();			//call each st::Sensor object to refresh data
+		updateDevices();			//call each st::Device object to update data
 
 		#ifndef DISABLE_SMARTTHINGS
 			SmartThing.run();		//call the ST Shield Library to receive any data from the ST Hub
