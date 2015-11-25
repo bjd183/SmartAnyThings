@@ -1,14 +1,18 @@
 metadata {
 	definition (name: "Arduino AnyThingShield", namespace: "bjd183", author: "Bryce Durham") {
-		capability "Contact Sensor"
+		capability "Contact Sensor" //TODO remove, add Actuator, Configure?
 		capability "Sensor"
 
-		attribute "motionPin07", "string"
+		attribute "alarmPin04", "string"
+        attribute "motionPin07", "string"
 		attribute "contactPin08", "string"
 		attribute "contactPin09", "string"
 		attribute "contactPin10", "string"
 		attribute "contactPin11", "string"
 		attribute "contactPin12", "string"
+        
+        command "alarmPin04siren"
+        command "alarmPin04off"
 	}
 
     simulator {
@@ -18,6 +22,10 @@ metadata {
 
 	// tile definitions
 	tiles {
+        standardTile("alarmPin04", "device.alarmPin04", width: 1, height: 1, canChangeIcon: true, canChangeBackground: true) {
+			state("off", label:'off', action:'alarmPin04siren', icon:"st.alarm.alarm.alarm", backgroundColor:"#ffffff")
+			state("siren", label:'alarm!', action:'alarmPin04off', icon:"st.alarm.alarm.alarm", backgroundColor:"#e86d13")
+ 		}
         standardTile("motionPin07", "device.motionPin07", width: 1, height: 1, canChangeIcon: true, canChangeBackground: true) {
 			state("active", label:'motion', icon:"st.motion.motion.active", backgroundColor:"#53a7c0")
 			state("inactive", label:'no motion', icon:"st.motion.motion.inactive", backgroundColor:"#ffffff")
@@ -44,7 +52,7 @@ metadata {
  		}
 
         main (["motionPin07"])
-        details(["motionPin07","contactPin08","contactPin09","contactPin10","contactPin11","contactPin12"])
+        details(["motionPin07","contactPin08","contactPin09","contactPin10","contactPin11","contactPin12","alarmPin04"])
 	}
 }
 
@@ -64,4 +72,13 @@ def parse(String description) {
 
     return result
 }
-//no commands to implement for a read-only contact sensor
+
+def alarmPin04siren() {
+	log.debug "Executing alarmPin04 siren"
+    zigbee.smartShield(text: "alarmPin04 siren").format()
+}
+
+def alarmPin04off() {
+	log.debug "Executing alarmPin04 off"
+    zigbee.smartShield(text: "alarmPin04 off").format()
+}
