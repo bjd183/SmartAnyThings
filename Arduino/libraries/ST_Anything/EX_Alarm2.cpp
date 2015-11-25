@@ -46,6 +46,7 @@ namespace st
 			//Decrement number of active timers
 			if (st::Everything::bTimersPending > 0) st::Everything::bTimersPending--;
 			m_bTimerPending = false;
+			refresh();
 		}
 	}
 
