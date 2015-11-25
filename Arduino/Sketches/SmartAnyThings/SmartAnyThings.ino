@@ -35,9 +35,9 @@ void setup()
 {
  
   //when the input wire is connected to ground (interrupt==TRUE), the input pullup is bypassed and reads LOW
-  static st::EX_Alarm2   executor1(F("alarmPin04"), 4, LOW, false, 30); //todo change to 5 minutes?=300
+  static st::EX_Alarm2  executor1(F("alarmPin04"), 4, LOW, false, 60); //todo change to 5 minutes?=300
   
-  static st::IS2_Motion sensor1(F("motionPin07"), 7, HIGH, true, 250, 60);
+  static st::IS2_Motion sensor1(F("motionPin07"), 7, HIGH, true, 250, 15);
   static st::IS_Contact sensor2(F("contactPin08"), 8, LOW, true, 250);
   static st::IS_Contact sensor3(F("contactPin09"), 9, LOW, true, 250);
   static st::IS_Contact sensor4(F("contactPin10"), 10, LOW, true, 250);
@@ -50,8 +50,9 @@ void setup()
   //*****************************************************************************
   st::Everything::debug=false;
   st::Device::debug=false;
-//  st::InterruptSensor2::debug=false; //Motion2, Contact
-//  st::Executor::debug=false; //Alarm
+  st::InterruptSensor::debug=false;
+  st::InterruptSensor2::debug=false;
+  st::Executor::debug=false;
   
   st::Everything::init();
   
