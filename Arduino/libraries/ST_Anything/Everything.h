@@ -57,7 +57,7 @@ namespace st
 			static SmartThingsNetworkState_t stNetworkState;
 		
 			static void updateNetworkState();	//keeps track of the current ST Shield to Hub network status
-			static void updateSensors();		//simply calls update on all the sensors
+			static void updateDevices();		//simply calls update on all the devices
 			static void sendStrings();			//sends all updates from the devices in Return_String
 			static unsigned long sendstringsLastMillis;	//keep track of how long since last time we sent data to ST Cloud, to enable throttling
 
