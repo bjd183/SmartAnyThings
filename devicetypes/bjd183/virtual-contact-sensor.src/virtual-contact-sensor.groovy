@@ -8,7 +8,6 @@ metadata {
 	}
 
 	simulator {
-		// TODO: define status and reply messages here
 	}
 
 	tiles(scale: 2) {
@@ -26,17 +25,17 @@ metadata {
 
 // parse events into attributes
 def parse(String description) {
-	log.debug "Parsing '${description}'"
+	log.debug "Parsing '${description}' but doing nothing (TODO?)"
 	// TODO: handle 'contact' attribute
 
 }
 
 def setOpen() {
-    log.debug "Virtual Contact Open"
+    log.info "Setting virtual contact open"
     sendEvent(name: "contact", value: "open", isStateChange: true)
 }
 
 def setClosed() {
-    log.debug "Virtual Contact Closed"
+    log.info "Setting virtual contact closed"
     sendEvent(name: "contact", value: "closed", isStateChange: true)
 }

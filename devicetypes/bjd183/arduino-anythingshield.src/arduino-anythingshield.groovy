@@ -66,19 +66,24 @@ def parse(String description) {
 
     name = value != "ping" ? name : null
 	
-    def result = createEvent(name: name, value: value, isStateChange: true) //true?
+    def result = createEvent(name: name, value: value, isStateChange: true)
 
-    log.debug result
+    //log.debug result
 
     return result
 }
 
+def alarmPin04both() {
+	log.info "Executing alarmPin04 strobe and siren (both)"
+    zigbee.smartShield(text: "alarmPin04 both").format()
+}
+
 def alarmPin04siren() {
-	log.debug "Executing alarmPin04 siren"
+	log.info "Executing alarmPin04 siren"
     zigbee.smartShield(text: "alarmPin04 siren").format()
 }
 
 def alarmPin04off() {
-	log.debug "Executing alarmPin04 off"
+	log.info "Executing alarmPin04 off"
     zigbee.smartShield(text: "alarmPin04 off").format()
 }

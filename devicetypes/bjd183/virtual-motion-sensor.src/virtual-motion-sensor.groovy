@@ -8,7 +8,6 @@ metadata {
 	}
 
 	simulator {
-		// TODO: define status and reply messages here
 	}
 
 	tiles(scale: 2) {
@@ -25,17 +24,17 @@ metadata {
 
 // parse events into attributes
 def parse(String description) {
-	log.debug "Parsing '${description}'"
+	log.debug "Parsing '${description}' but doing nothing (TODO?)"
 	// TODO: handle 'contact' attribute
 
 }
 
 def setActive() {
-    log.debug "Virtual Motion Active"
+    log.info "Setting virtual motion active"
     sendEvent(name: "motion", value: "active", isStateChange: true)
 }
 
 def setInactive() {
-    log.debug "Virtual Motion Inactive"
+    log.info "Setting virtual motion inactive"
     sendEvent(name: "motion", value: "inactive", isStateChange: true)
 }
