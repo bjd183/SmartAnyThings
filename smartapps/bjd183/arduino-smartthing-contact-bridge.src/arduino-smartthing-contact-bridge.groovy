@@ -37,7 +37,7 @@ def subscribe() {
 
 def contactHandler(evt)
 {
-	log.debug "arduinoevent($evt.name; $evt.value; $evt.deviceId)"
+	log.info "Received ($evt.name: $evt.value) from $evt.device ($evt.displayName)"
 	
     if (evt.value == "open") {
     	contact.setOpen()
