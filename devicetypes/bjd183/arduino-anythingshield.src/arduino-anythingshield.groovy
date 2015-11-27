@@ -11,8 +11,7 @@ metadata {
 		attribute "contactPin11", "string"
 		attribute "contactPin12", "string"
         
-        command "alarmPin04siren"
-        command "alarmPin04off"
+        command "set"
 	}
 
     simulator {
@@ -58,7 +57,7 @@ metadata {
 
 def parse(String description) {
     def msg = zigbee.parse(description)?.text
-    log.debug "Parse got '${msg}'"
+    log.debug "Parsing '${msg}'"
 
     def parts = msg.split(" ")
     def name  = parts.length>0?parts[0].trim():null
@@ -73,17 +72,22 @@ def parse(String description) {
     return result
 }
 
-def alarmPin04both() {
-	log.info "Executing alarmPin04 strobe and siren (both)"
-    zigbee.smartShield(text: "alarmPin04 both").format()
+def set(pin,action) {
+	log.info "Executing '${pin}' '${action}'"
+    zigbee.smartShield(text: "'${pin}' '${action}'").format()
 }
 
-def alarmPin04siren() {
-	log.info "Executing alarmPin04 siren"
-    zigbee.smartShield(text: "alarmPin04 siren").format()
-}
+//def alarmPin04both() {
+//	log.info "Executing alarmPin04 strobe and siren (both)"
+//    zigbee.smartShield(text: "alarmPin04 both").format()
+//}
 
-def alarmPin04off() {
-	log.info "Executing alarmPin04 off"
-    zigbee.smartShield(text: "alarmPin04 off").format()
-}
+//def alarmPin04siren() {
+//	log.info "Executing alarmPin04 siren"
+//    zigbee.smartShield(text: "alarmPin04 siren").format()
+//}
+
+//def alarmPin04off() {
+//	log.info "Executing alarmPin04 off"
+//    zigbee.smartShield(text: "alarmPin04 off").format()
+//}
