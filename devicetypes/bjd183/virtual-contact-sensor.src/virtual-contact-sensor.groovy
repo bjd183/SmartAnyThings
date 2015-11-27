@@ -32,10 +32,10 @@ def parse(String description) {
 
 def setOpen() {
     log.info "Setting virtual contact open"
-    sendEvent(name: "contact", value: "open", isStateChange: true)
+    sendEvent(name: "contact", value: "open")
 }
 
 def setClosed() {
     log.info "Setting virtual contact closed"
-    sendEvent(name: "contact", value: "closed", isStateChange: true)
+    sendEvent(name: "contact", value: "closed")
 }

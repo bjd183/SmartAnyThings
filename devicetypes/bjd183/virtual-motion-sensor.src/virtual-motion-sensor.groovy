@@ -31,10 +31,10 @@ def parse(String description) {
 
 def setActive() {
     log.info "Setting virtual motion active"
-    sendEvent(name: "motion", value: "active", isStateChange: true)
+    sendEvent(name: "motion", value: "active")
 }
 
 def setInactive() {
     log.info "Setting virtual motion inactive"
-    sendEvent(name: "motion", value: "inactive", isStateChange: true)
+    sendEvent(name: "motion", value: "inactive")
 }
