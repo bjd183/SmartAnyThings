@@ -13,11 +13,11 @@ namespace st
 
 	//public
 	//constructor
-	EX_Alarm2::EX_Alarm2(const __FlashStringHelper *name, byte pin, bool startingState, bool invertLogic, unsigned long delayTime) :
+	EX_Alarm2::EX_Alarm2(const __FlashStringHelper *name, byte pin, bool startingState, bool invertLogic, unsigned long autoOffDelay) :
 		Executor(name),
 		m_bCurrentState(startingState),
 		m_bInvertLogic(invertLogic),
-		m_lDelayTime(delayTime),
+		m_lAutoOffDelay(autoOffDelay),
 		m_lTimeTurnedOn(0),
 		m_bTimerPending(false)
 	{
@@ -39,7 +39,7 @@ namespace st
 	void EX_Alarm2::update()
 	{
 		//Turn off digital output if timer has expired
-		if ((m_bCurrentState == HIGH) && (millis() - m_lTimeTurnedOn >= m_lDelayTime * 1000))
+		if ((m_bCurrentState == HIGH) && (millis() - m_lTimeTurnedOn >= m_lAutoOffDelay * 1000))
 		{	
 			m_bCurrentState = LOW;
 			writeStateToPin();

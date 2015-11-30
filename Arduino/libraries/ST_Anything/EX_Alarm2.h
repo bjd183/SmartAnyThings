@@ -14,7 +14,7 @@ namespace st
 		bool m_bInvertLogic;
 		byte m_nPin;
 		unsigned long m_lTimeTurnedOn;
-		unsigned long m_lDelayTime;
+		unsigned long m_lAutoOffDelay;
 		bool m_bTimerPending;
 
 
@@ -22,7 +22,7 @@ namespace st
 
 	public:
 		//constructor
-		EX_Alarm2(const __FlashStringHelper *name, byte Pin, bool startingState = LOW, bool invertLogic = false, unsigned long delayTime = 0);
+		EX_Alarm2(const __FlashStringHelper *name, byte Pin, bool startingState = LOW, bool invertLogic = false, unsigned long autoOffDelay = 0);
 
 		//destructor
 		virtual ~EX_Alarm2();
