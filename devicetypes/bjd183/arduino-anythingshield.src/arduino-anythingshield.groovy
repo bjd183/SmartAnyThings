@@ -12,6 +12,8 @@ metadata {
 		attribute "contactPin12", "string"
         
         command "set"
+        command "alarmPin04siren"
+        command "alarmPin04off"
 	}
 
     simulator {
@@ -73,8 +75,8 @@ def parse(String description) {
 }
 
 def set(pin,action) {
-	log.info "Executing '${pin}' '${action}'"
-    zigbee.smartShield(text: "'${pin}' '${action}'").format()
+	log.info "Executing ${pin} ${action}"
+    zigbee.smartShield(text: "${pin} ${action}").format()
 }
 
 //def alarmPin04both() {
@@ -82,12 +84,12 @@ def set(pin,action) {
 //    zigbee.smartShield(text: "alarmPin04 both").format()
 //}
 
-//def alarmPin04siren() {
-//	log.info "Executing alarmPin04 siren"
-//    zigbee.smartShield(text: "alarmPin04 siren").format()
-//}
+def alarmPin04siren() {
+	log.info "Executing alarmPin04 siren"
+    zigbee.smartShield(text: "alarmPin04 siren").format()
+}
 
-//def alarmPin04off() {
-//	log.info "Executing alarmPin04 off"
-//    zigbee.smartShield(text: "alarmPin04 off").format()
-//}
+def alarmPin04off() {
+	log.info "Executing alarmPin04 off"
+    zigbee.smartShield(text: "alarmPin04 off").format()
+}
