@@ -9,14 +9,14 @@ definition(
     iconX3Url: "https://s3.amazonaws.com/smartapp-icons/MyApps/Cat-MyApps@3x.png")
 
 preferences {
-    section("Select the Arduino AnyThingShield") {
-		input "arduino", "device.arduinoAnythingshield", required:true
+    section("Select the Arduino SmartThing") {
+		input(name:"arduino", type:"device.arduinoAnythingshield", required:true)
     }
     section("Select the bridged pin") {
 		input(name:"pin",type:"enum",options:["contactPin08","contactPin09","contactPin10","contactPin11","contactPin12"],required:true)
 	}
 	section("Select the virtual contact sensor") {
-		input "contact", "device.virtualContactSensor", required:true
+		input(name:"virtualContact", type:"device.virtualContactSensor", required:true)
 	}
 }
 
@@ -40,8 +40,8 @@ def contactHandler(evt)
 	log.info "Received ($evt.name: $evt.value) from $evt.device ($evt.displayName)"
 	
     if (evt.value == "open") {
-    	contact.setOpen()
+    	virtualContact.setOpen()
     } else if (evt.value == "closed") {
-    	contact.setClosed()
+    	virtualContact.setClosed()
     }
 }

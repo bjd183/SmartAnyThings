@@ -9,14 +9,14 @@ definition(
     iconX3Url: "https://s3.amazonaws.com/smartapp-icons/MyApps/Cat-MyApps@3x.png")
 
 preferences {
-    section("Select the Arduino AnyThingShield") {
+    section("Select the Arduino SmartThing") {
 		input(name:"arduino", type:"device.arduinoAnythingshield", required:true)
     }
     section("Select the bridged pin") {
 		input(name:"pin",type:"enum",options:["alarmPin04"],required:true)
 	}
 	section("Select the virtual alarm actuator") {
-		input(name:"vAlarm", type:"device.virtualAlarmActuator", required:true)
+		input(name:"virtualAlarm", type:"device.virtualAlarmActuator", required:true)
 	}
 }
 
@@ -32,12 +32,12 @@ def updated() {
 }
 
 def subscribe() {
-	subscribe(arduino, pin, arduinoHandler) //sync from arduino to virtual
-    subscribe(vAlarm, "alarm", vHandler)
+	subscribe(arduino, pin, arduinoHandler)
+    subscribe(virtualAlarm, "alarm", virtualHandler)
 }
 
 //sync from virtual device to arduino
-def vHandler(evt)
+def virtualHandler(evt)
 {
 	log.info "Received ($evt.name: $evt.value) from $evt.device ($evt.displayName)"
     arduino.set(pin, evt.value)
@@ -49,16 +49,16 @@ def arduinoHandler(evt)
 	log.info "Received ($evt.name: $evt.value) from $evt.device ($evt.displayName)"
     switch (evt.value) {
     	case "siren":
-        	alarm.siren()
+        	virtualAlarm.siren()
             break
         case "strobe":
-        	alarm.strobe()
+        	virtualAlarm.strobe()
             break
         case "both":
-        	alarm.both()
+        	virtualAlarm.both()
             break
         case "off":
-        	alarm.off()
+        	virtualAlarm.off()
             break
         default:
         	break

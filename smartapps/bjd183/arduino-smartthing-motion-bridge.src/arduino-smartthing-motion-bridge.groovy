@@ -9,14 +9,14 @@ definition(
     iconX3Url: "https://s3.amazonaws.com/smartapp-icons/MyApps/Cat-MyApps@3x.png")
 
 preferences {
-    section("Select the Arduino AnyThingShield") {
-		input "arduino", "device.arduinoAnythingshield", required:true
+    section("Select the Arduino SmartThing") {
+		input(name:"arduino", type:"device.arduinoAnythingshield", required:true)
     }
     section("Select the bridged pin") {
 		input(name:"pin",type:"enum",options:["motionPin07"],required:true)
 	}
 	section("Select the virtual motion sensor") {
-		input "motion", "device.virtualMotionSensor", required:true
+		input(name:"virtualMotion", type:"device.virtualMotionSensor", required:true)
 	}
 }
 
@@ -33,7 +33,6 @@ def updated() {
 
 def subscribe() {
 	subscribe(arduino, pin, motionHandler)
-
 }
 
 def motionHandler(evt)
@@ -41,8 +40,8 @@ def motionHandler(evt)
 	log.info "Received ($evt.name: $evt.value) from $evt.device ($evt.displayName)"
 	
     if (evt.value == "active") {
-    	motion.setActive()
+    	virtualMotion.setActive()
     } else if (evt.value == "inactive") {
-    	motion.setInactive()
+    	virtualMotion.setInactive()
     }
 }
