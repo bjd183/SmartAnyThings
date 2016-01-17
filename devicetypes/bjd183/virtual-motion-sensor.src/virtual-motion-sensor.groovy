@@ -25,16 +25,14 @@ metadata {
 // parse events into attributes
 def parse(String description) {
 	log.debug "Parsing '${description}' but doing nothing (TODO?)"
-	// TODO: handle 'contact' attribute
-
 }
 
 def setActive() {
     log.info "Setting virtual motion active"
-    sendEvent(name: "motion", value: "active")
+    sendEvent(name: "motion", value: "active", isStateChange: true)
 }
 
 def setInactive() {
     log.info "Setting virtual motion inactive"
-    sendEvent(name: "motion", value: "inactive")
+    sendEvent(name: "motion", value: "inactive", isStateChange: true)
 }

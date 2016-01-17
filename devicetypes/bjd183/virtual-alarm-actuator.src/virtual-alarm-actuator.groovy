@@ -20,12 +20,15 @@ metadata {
 //        standardTile("test", "device.alarm", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
 //            state "default", label:'', action:"test", icon:"st.secondary.test"
 //        }
-//        standardTile("off", "device.alarm", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-//            state "default", label:'', action:"alarm.off", icon:"st.secondary.off"
-//        }
+        standardTile("both", "device.alarm", inactiveLabel: false, decoration: "flat", width:2 , height: 2) {
+        	state "default", label:'', action:"alarm.both", icon:"st.secondary.test"
+        }
+        standardTile("off", "device.alarm", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+            state "default", label:'', action:"alarm.off", icon:"st.secondary.off"
+        }
 	}
 	main "alarm"
-	details(["alarm"])
+	details(["alarm","both","off"])
 }
 
 // parse events into attributes
@@ -35,17 +38,17 @@ def parse(String description) {
 
 //handle commands
 def both() {
-	log.info "Setting virtual alarm siren and strobe (both) on"
+	log.info "Setting virtual alarm both"
     sendEvent(name: "alarm", value: "both")
 }
 
 def strobe() {
-	log.info "Setting virtual alarm strobe on"
+	log.info "Setting virtual alarm strobe"
     sendEvent(name: "alarm", value: "strobe")
 }
 
 def siren() {
-    log.info "Setting virtual alarm siren on"
+    log.info "Setting virtual alarm siren"
 	sendEvent(name: "alarm", value: "siren")
 }
 

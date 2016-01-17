@@ -26,16 +26,14 @@ metadata {
 // parse events into attributes
 def parse(String description) {
 	log.debug "Parsing '${description}' but doing nothing (TODO?)"
-	// TODO: handle 'contact' attribute
-
 }
 
 def setOpen() {
     log.info "Setting virtual contact open"
-    sendEvent(name: "contact", value: "open")
+    sendEvent(name: "contact", value: "open", isStateChange: true)
 }
 
 def setClosed() {
     log.info "Setting virtual contact closed"
-    sendEvent(name: "contact", value: "closed")
+    sendEvent(name: "contact", value: "closed", isStateChange: true)
 }
