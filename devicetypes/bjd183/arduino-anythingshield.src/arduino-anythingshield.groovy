@@ -12,6 +12,8 @@ metadata {
 		attribute "contactPin12", "string"
         
         command "set"
+        command "alarmPin04off"
+        command "alarmPin04siren"
 	}
 
     simulator {
