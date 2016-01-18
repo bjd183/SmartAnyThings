@@ -59,19 +59,18 @@ metadata {
 
 def parse(String description) {
     def msg = zigbee.parse(description)?.text
-    log.debug "Parsing '${msg}'"
+    log.debug "Parsing '$msg'"
 
     def parts = msg.split(" ")
     def name  = parts.length>0?parts[0].trim():null
     def value = parts.length>1?parts[1].trim():null
 
-    name = value != "ping" ? name : null
+//    name = value != "ping" ? name : null
+//    name = name == "ping" ? null : name
 	
     def result = createEvent(name: name, value: value, isStateChange: true)
 
-    //log.debug result
-
-    return result
+    return name == "ping" ? null : result
 }
 
 def set(pin,action) {
