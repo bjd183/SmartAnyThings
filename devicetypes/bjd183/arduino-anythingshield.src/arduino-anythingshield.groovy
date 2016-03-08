@@ -68,7 +68,7 @@ def parse(String description) {
 //    name = value != "ping" ? name : null
 //    name = name == "ping" ? null : name
 	
-    def result = createEvent(name: name, value: value, isStateChange: true)
+    def result = createEvent(name: name, value: value)
 
     return name == "ping" ? null : result
 }
